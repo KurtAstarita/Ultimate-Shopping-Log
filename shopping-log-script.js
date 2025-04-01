@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Log</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' cdnjs.cloudflare.com; style-src 'self';">
+</head>
+<body>
 <div id="shopping-log">
   <h3 style="text-align: center;"><span style="color: #ffa400;">DISCLAIMER:&nbsp; At the bottom ↓</span></h3>
   <h1>Ultimate Shopping Log</h1>
@@ -33,6 +43,8 @@
   </div>
 </div>
 
+
+  
 <script src="https://kurtastarita.github.io/shoppingLog/csp-setup.js"></script>
 <script src="https://kurtastarita.github.io/shoppinglog/shopping-log-script.js"></script>
 
@@ -367,3 +379,5 @@
     reader.readAsText(file);
   });
 </script>
+</body>
+</html>
