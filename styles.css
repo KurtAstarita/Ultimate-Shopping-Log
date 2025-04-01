@@ -1,1 +1,111 @@
+<style>
+  #shopping-log {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    width: 100%;
+    max-width: 100%;
+  }
 
+  #shopping-log h1 {
+    text-align: center;
+  }
+
+  #shopping-log input,
+  #shopping-log button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  #shopping-log input {
+    border: 1px solid #ccc;
+  }
+
+  #shopping-log button {
+    background-color: #00A000;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  #shopping-log button:hover {
+    background-color: #006600;
+  }
+
+  #shopping-log .shopping-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr 3fr;
+    gap: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+  }
+
+  #shopping-log .header {
+    display: none;
+  }
+
+  #shopping-log label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  #confirmation-dialog {
+    background: white;
+    border: 1px solid rgb(204, 204, 204);
+    display: none;
+    left: 50%;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
+
+  @media (max-width: 600px) {
+    #shopping-log .shopping-item {
+      display: block;
+    }
+
+    #shopping-log .shopping-item input {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    #shopping-log .header {
+      display: none;
+    }
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 5mm;
+    }
+
+    body * {
+      visibility: hidden;
+    }
+
+    #print-container,
+    #print-container * {
+      visibility: visible;
+    }
+
+    #print-container {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 90% !important;
+      margin: 0 auto !important;
+      padding: 10px !important;
+      background: white !important;
+    }
+  }
+</style>
