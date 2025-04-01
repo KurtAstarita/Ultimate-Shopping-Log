@@ -212,3 +212,13 @@ const shoppingDate = document.getElementById("shopping-date");
     };
     reader.readAsText(file);
   });
+
+//select all anchor elements in the footer.
+const footerLinks = document.querySelectorAll('footer a');
+
+footerLinks.forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default link behavior
+    window.parent.location.href = link.href; // Open in parent window
+  });
+});
