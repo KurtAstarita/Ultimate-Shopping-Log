@@ -135,36 +135,40 @@
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
   .branding-container {
-    margin-top: 20px; /* Reduced margin */
-    padding: 10px 0; /* Reduced padding */
+    margin-top: 20px;
+    padding: 10px 0;
+    display: flex; /* Use flexbox for layout control */
+    flex-direction: column; /* Stack text and link vertically */
+    align-items: center; /* Center items horizontally */
   }
 
   .branding-container a {
-    font-size: 0.9em; /* Smaller font size */
-    padding: 6px 10px; /* Reduced padding */
-    margin-left: 5px; /*reduced margin*/
+    font-size: 0.9em;
+    padding: 6px 10px;
+    margin-left: 0; /* Remove left margin */
+    margin-top: 10px; /* Add top margin for spacing */
   }
 
   .branding-container span {
-    font-size: 0.9em; /* Smaller font size */
-    margin-right: 5px; /*reduced margin*/
+    font-size: 0.9em;
+    margin-right: 0; /* Remove right margin */
   }
 }
 
 /* Responsive adjustments for tablet (optional) */
 @media (min-width: 601px) and (max-width: 1024px) {
   .branding-container {
-    margin-top: 25px; /* Adjusted margin */
-    padding: 12px 0; /* Adjusted padding */
+    margin-top: 25px;
+    padding: 12px 0;
   }
 
   .branding-container a {
-    font-size: 1em; /* Adjusted font size */
-    padding: 7px 12px; /* Adjusted padding */
+    font-size: 1em;
+    padding: 7px 12px;
   }
 
   .branding-container span {
-    font-size: 1em; /* Adjusted font size */
+    font-size: 1em;
   }
 }
 
