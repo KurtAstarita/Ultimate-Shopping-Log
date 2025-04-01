@@ -110,22 +110,34 @@
 
 .branding-container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px; /* Increased margin for better spacing */
+  padding: 15px 0; /* Added padding for visual separation */
+  background-color: #f8f8f8; /* Light background for contrast */
+  border-top: 1px solid #eee; /* Added a subtle top border */
 }
 
 .branding-container a {
   text-decoration: none;
   color: #007bff;
+  font-weight: 600; /* Slightly bolder font weight */
+  padding: 8px 15px; /* Added padding to link */
+  border: 1px solid #007bff; /* Added a border to the link */
+  border-radius: 5px; /* Rounded corners for the link */
+  background-color: white; /*white background for link*/
+  margin-left: 10px; /*added margin to the left of the link*/
 }
 
 .branding-container span {
-  font-weight: bold;
+  font-weight: 600; /* Slightly bolder font weight */
+  margin-right: 10px; /*added margin to the right of the span*/
 }
 
 footer {
   text-align: center;
   padding: 20px;
   border-top: 1px solid #eee;
+  font-size: 0.9em; /* Slightly smaller font size */
+  color: #666; /* Darker grey color */
 }
 
 footer a {
