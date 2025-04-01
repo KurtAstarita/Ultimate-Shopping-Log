@@ -1,5 +1,4 @@
-
-  const shoppingDate = document.getElementById("shopping-date");
+const shoppingDate = document.getElementById("shopping-date");
   const financialGoal = document.getElementById("financial-goal");
   const shoppingItems = document.getElementById("shopping-items");
   const confirmationDialog = document.getElementById("confirmation-dialog");
@@ -213,4 +212,3 @@
     };
     reader.readAsText(file);
   });
-
