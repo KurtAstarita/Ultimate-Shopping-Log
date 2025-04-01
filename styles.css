@@ -110,26 +110,62 @@
 
 .branding-container {
   text-align: center;
-  margin-top: 30px; /* Increased margin for better spacing */
-  padding: 15px 0; /* Added padding for visual separation */
-  background-color: #f8f8f8; /* Light background for contrast */
-  border-top: 1px solid #eee; /* Added a subtle top border */
+  margin-top: 30px;
+  padding: 15px 0;
+  background-color: #f8f8f8;
+  border-top: 1px solid #eee;
 }
 
 .branding-container a {
   text-decoration: none;
   color: #007bff;
-  font-weight: 600; /* Slightly bolder font weight */
-  padding: 8px 15px; /* Added padding to link */
-  border: 1px solid #007bff; /* Added a border to the link */
-  border-radius: 5px; /* Rounded corners for the link */
-  background-color: white; /*white background for link*/
-  margin-left: 10px; /*added margin to the left of the link*/
+  font-weight: 600;
+  padding: 8px 15px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  margin-left: 10px;
 }
 
 .branding-container span {
-  font-weight: 600; /* Slightly bolder font weight */
-  margin-right: 10px; /*added margin to the right of the span*/
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .branding-container {
+    margin-top: 20px; /* Reduced margin */
+    padding: 10px 0; /* Reduced padding */
+  }
+
+  .branding-container a {
+    font-size: 0.9em; /* Smaller font size */
+    padding: 6px 10px; /* Reduced padding */
+    margin-left: 5px; /*reduced margin*/
+  }
+
+  .branding-container span {
+    font-size: 0.9em; /* Smaller font size */
+    margin-right: 5px; /*reduced margin*/
+  }
+}
+
+/* Responsive adjustments for tablet (optional) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .branding-container {
+    margin-top: 25px; /* Adjusted margin */
+    padding: 12px 0; /* Adjusted padding */
+  }
+
+  .branding-container a {
+    font-size: 1em; /* Adjusted font size */
+    padding: 7px 12px; /* Adjusted padding */
+  }
+
+  .branding-container span {
+    font-size: 1em; /* Adjusted font size */
+  }
 }
 
 footer {
