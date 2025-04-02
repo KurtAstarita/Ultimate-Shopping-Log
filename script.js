@@ -198,8 +198,8 @@ document.getElementById("upload-log").addEventListener("change", event => {
                 throw new Error("Invalid shopping log structure.");
             }
 
-            if (!parsedData.hasOwnProperty('goal') || typeof parsedData.goal !== 'number') {
-                console.error("Error: Missing or invalid 'goal' property.");
+            if (!parsedData.hasOwnProperty('goal') || (typeof parsedData.goal !== 'number' && isNaN(Number(parsedData.goal)))) {
+                console.error("Error: Missing or invalid 'goal' property. Must be a number.");
                 throw new Error("Invalid shopping log structure.");
             }
 
@@ -217,12 +217,17 @@ document.getElementById("upload-log").addEventListener("change", event => {
                     throw new Error("Invalid shopping item structure.");
                 }
 
-                if (typeof item[0] !== 'string' || typeof item[1] !== 'number' ||
-                    typeof item[2] !== 'number' || typeof item[3] !== 'string' ||
+                if (typeof item[0] !== 'string' || typeof item[1] !== 'string' ||
+                    typeof item[2] !== 'string' || typeof item[3] !== 'string' ||
                     typeof item[4] !== 'string') {
                     console.error(`Error: Item ${i} has invalid data types.`);
                     throw new Error("Invalid shopping item structure.");
                 }
+            }
+
+            // Convert goal to a number if it's a string
+            if (typeof parsedData.goal === 'string'){
+                parsedData.goal = Number(parsedData.goal);
             }
 
             localStorage.setItem("shoppingLog", JSON.stringify(parsedData));
