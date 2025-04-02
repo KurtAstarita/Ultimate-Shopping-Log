@@ -186,18 +186,41 @@ document.getElementById("upload-log").addEventListener("change", event => {
         try {
             const parsedData = JSON.parse(e.target.result);
 
-            if (typeof parsedData !== 'object' || parsedData === null ||
-                !parsedData.hasOwnProperty('date') || typeof parsedData.date !== 'string' ||
-                !parsedData.hasOwnProperty('goal') || typeof parsedData.goal !== 'number' ||
-                !parsedData.hasOwnProperty('items') || !Array.isArray(parsedData.items)) {
+            console.log("Parsed Data:", parsedData); // Log the entire parsed object
+
+            if (typeof parsedData !== 'object' || parsedData === null) {
+                console.error("Error: Parsed data is not an object.");
                 throw new Error("Invalid shopping log structure.");
             }
 
-            for (const item of parsedData.items) {
-                if (!Array.isArray(item) || item.length !== 5 ||
-                    typeof item[0] !== 'string' || typeof item[1] !== 'number' ||
+            if (!parsedData.hasOwnProperty('date') || typeof parsedData.date !== 'string') {
+                console.error("Error: Missing or invalid 'date' property.");
+                throw new Error("Invalid shopping log structure.");
+            }
+
+            if (!parsedData.hasOwnProperty('goal') || typeof parsedData.goal !== 'number') {
+                console.error("Error: Missing or invalid 'goal' property.");
+                throw new Error("Invalid shopping log structure.");
+            }
+
+            if (!parsedData.hasOwnProperty('items') || !Array.isArray(parsedData.items)) {
+                console.error("Error: Missing or invalid 'items' property.");
+                throw new Error("Invalid shopping log structure.");
+            }
+
+            for (let i = 0; i < parsedData.items.length; i++) {
+                const item = parsedData.items[i];
+                console.log(`Checking Item ${i}:`, item); // Log each item
+
+                if (!Array.isArray(item) || item.length !== 5) {
+                    console.error(`Error: Item ${i} is not an array of length 5.`);
+                    throw new Error("Invalid shopping item structure.");
+                }
+
+                if (typeof item[0] !== 'string' || typeof item[1] !== 'number' ||
                     typeof item[2] !== 'number' || typeof item[3] !== 'string' ||
                     typeof item[4] !== 'string') {
+                    console.error(`Error: Item ${i} has invalid data types.`);
                     throw new Error("Invalid shopping item structure.");
                 }
             }
