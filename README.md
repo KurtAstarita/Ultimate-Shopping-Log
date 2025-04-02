@@ -47,6 +47,10 @@ This is a simple web application for logging your shopping trips. It allows you 
 * **Blob API:** For creating downloadable JSON files.
 * **URL API:** For creating object URLs for downloaded files.
 
+## DISCLAMER
+
+**Read the disclaimer here:** [Ultimate Shopping Log Disclaimer](/DISCLAIMER.md)
+
 ## Installation
 
 1.  Clone the repository to your local machine.
@@ -54,12 +58,16 @@ This is a simple web application for logging your shopping trips. It allows you 
 
 ## Contributing
 
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+Contributions are welcome! Please feel free to submit a pull request.
 
 ## License
 
 This project is licensed under the MIT License.
 
-## DISCLAMER
+## Author
 
-**Read the disclaimer here:** [Ultimate Shopping Log Disclaimer](/DISCLAIMER.md)
+* Kurt Astarita
+
+## Embed App
+
+* [How To Embed](https://post40gains.blogspot.com/p/ultimate-shopping-log.html)
