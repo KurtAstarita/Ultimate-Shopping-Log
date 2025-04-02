@@ -62,4 +62,4 @@ This project is licensed under the MIT License.
 
 ## DISCLAMER
 
-**Read the disclaimer here:** [Workout Log Disclaimer](/DISCLAIMER.md)
+**Read the disclaimer here:** [Ultimate Shopping Log Disclaimer](/DISCLAIMER.md)
