@@ -35,18 +35,18 @@ const shoppingDate = document.getElementById("shopping-date");
     return isValid;
   }
 
-  document.getElementById("add-item").addEventListener("click", () => {
+document.getElementById("add-item").addEventListener("click", () => {
     const item = document.createElement("div");
     item.classList.add("shopping-item");
     item.innerHTML = `
-      <input type="text" placeholder="Item Name">
-      <input type="number" placeholder="Quantity" min="1">
-      <input type="number" placeholder="Price" min="0">
-      <input type="text" placeholder="Category">
-      <input type="text" placeholder="Notes">
+        <input type="text" placeholder="Item Name" id="itemName-${Date.now()}">
+        <input type="number" placeholder="Quantity" min="1" id="quantity-${Date.now()}">
+        <input type="number" placeholder="Price" min="0" id="price-${Date.now()}">
+        <input type="text" placeholder="Category" id="category-${Date.now()}">
+        <input type="text" placeholder="Notes" id="notes-${Date.now()}">
     `;
     shoppingItems.appendChild(item);
-  });
+});
 
   document.getElementById("remove-item").addEventListener("click", () => {
     if (shoppingItems.children.length > 1) {
