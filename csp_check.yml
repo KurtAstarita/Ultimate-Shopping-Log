@@ -1,0 +1,25 @@
+name: CSP Check
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  csp_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check CSP syntax
+        run: |
+          # Add your CSP syntax checking script here.
+          # Example: using a simple grep to find syntax issues.
+          if grep -E ";$" _headers; then
+            echo "CSP syntax check passed."
+          else
+            echo "Error: CSP syntax check failed. Missing semi-colon."
+            exit 1
+          fi
