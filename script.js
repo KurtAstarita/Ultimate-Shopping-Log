@@ -136,29 +136,40 @@ document.getElementById("print-pdf").addEventListener("click", () => {
         alert("jsPDF library not loaded. PDF generation is unavailable.");
         return;
     }
+
     const doc = new jsPDF();
+
     try {
         doc.text("Shopping Log", 10, 10);
         doc.text(`Shopping Date: ${document.getElementById("shopping-date").value || "No Date"}`, 10, 20);
         doc.text(`Financial Goal: ${document.getElementById("financial-goal").value || "No Goal"}`, 10, 30);
 
-        let y = 40;
-        doc.setFontSize(12);
+        let headers = ["Item Name", "Quantity", "Price", "Category", "Notes"];
+        let rows = [];
 
-        document.querySelectorAll(".shopping-item:not(.header)").forEach(item => {
-            const inputs = item.querySelectorAll("input");
-            let rowText = "";
-            inputs.forEach(input => {
-                let value = String(input.value || "N/A");
-                console.log("Input Value:", value, "Data Type:", typeof value);
-                rowText += value + " | ";
-            });
-            doc.text(rowText, 10, y);
-            y += 10;
+        Array.from(shoppingItems.children).slice(1).forEach(item => {
+            const inputs = Array.from(item.querySelectorAll("input"));
+            let rowData = inputs.map(input => input.value || "N/A");
+            rows.push(rowData);
+        });
+
+        doc.autoTable({
+            head: [headers],
+            body: rows,
+            startY: 40,
+            styles: {
+                fontSize: 8,
+                cellPadding: 2,
+            },
+            headStyles: {
+                fontSize: 8,
+                fillColor: [200, 200, 200],
+            },
         });
 
         doc.save("shopping-log.pdf");
         alert("Shopping PDF generated successfully with shopping data!");
+
     } catch (error) {
         console.error("PDF generation error:", error);
         alert("Failed to generate Shopping PDF. Please try again.");
