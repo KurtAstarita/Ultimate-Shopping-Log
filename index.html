@@ -9,81 +9,79 @@
 </head>
 <body>
 
-<div class="social-share">
-    <h3>Share This Tool:</h3>
-    <ul>
-        <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://kurtastarita.github.io/post40gains-fitness-tools/ultimate-meal-log.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Share on Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
-            </a>
-        </li>
-        <li>
-            <a href="https://twitter.com/intent/tweet?url=https://kurtastarita.github.io/post40gains-fitness-tools/ultimate-meal-log.html&text=Check out this Ultimate Meal Log to easily track your nutrition! #fitness #nutrition"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Share on Twitter">
-                <img src="twitter-icon.png" alt="Twitter">
-            </a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://kurtastarita.github.io/post40gains-fitness-tools/ultimate-meal-log.html&title=Ultimate%20Meal%20Log&summary=Effortlessly%20log%20your%20daily%20meals%2C%20track%20calories%2C%20and%20monitor%20your%20nutrition!&source=YOUR_WEBSITE_NAME"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Share on LinkedIn">
-                <img src="linkedin-icon.png" alt="LinkedIn">
-            </a>
-        </li>
-    </ul>
+<div class="social-share-wrapper">
+  <div class="social-share">
+    <h3>Share This Tool:</h3>
+    <ul>
+      <li>
+        <a href="..." target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+          <img src="facebook-icon.png" alt="Facebook">
+        </a>
+      </li>
+      <li>
+        <a href="..." target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+          <img src="twitter-icon.png" alt="Twitter">
+        </a>
+      </li>
+      <li>
+        <a href="..." target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+          <img src="linkedin-icon.png" alt="LinkedIn">
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
-  
-<div id="shopping-log">
-  <h1>Ultimate Shopping Log</h1>
 
-  <label>Shopping Date:</label>
-  <input id="shopping-date" type="date" />
+<div class="shopping-log-container">
+  <div id="shopping-log">
+    <h1>Ultimate Shopping Log</h1>
 
-  <label>Financial Goal:</label>
-  <input id="financial-goal" type="number" />
+    <label>Shopping Date:</label>
+    <input id="shopping-date" type="date" />
 
-  <div id="shopping-items">
-    <div class="shopping-item header">
-      <input readonly="" type="text" value="Item Name" />
-      <input readonly="" type="text" value="Quantity" />
-      <input readonly="" type="text" value="Price" />
-      <input readonly="" type="text" value="Category" />
-      <input readonly="" type="text" value="Notes" />
+    <label>Financial Goal:</label>
+    <input id="financial-goal" type="number" />
+
+    <div id="shopping-items">
+      <div class="shopping-item header">
+        <input readonly="" type="text" value="Item Name" />
+        <input readonly="" type="text" value="Quantity" />
+        <input readonly="" type="text" value="Price" />
+        <input readonly="" type="text" value="Category" />
+        <input readonly="" type="text" value="Notes" />
+      </div>
+    </div>
+
+    <button id="add-item">Add Item</button>
+    <button id="remove-item">Remove Item</button>
+    <button id="save-log">Save Log</button>
+    <button id="load-log">Load Log</button>
+    <button id="print-pdf">Print as PDF</button>
+    <button id="download-log">Download Log</button>
+    <input accept=".json" id="upload-log" type="file" />
+
+    <div id="confirmation-dialog">
+      <p>Are you sure you want to delete this item?</p>
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">No</button>
     </div>
   </div>
-
-  <button id="add-item">Add Item</button>
-  <button id="remove-item">Remove Item</button>
-  <button id="save-log">Save Log</button>
-  <button id="load-log">Load Log</button>
-  <button id="print-pdf">Print as PDF</button>
-  <button id="download-log">Download Log</button>
-  <input accept=".json" id="upload-log" type="file" />
-
-  <div id="confirmation-dialog">
-    <p>Are you sure you want to delete this item?</p>
-    <button id="confirm-yes">Yes</button>
-    <button id="confirm-no">No</button>
-  </div>
 </div>
-  <div class="branding-container">
-    Learn how you can embed our app!
-    <a href="https://post40gains.blogspot.com/p/how-to-embed-our-apps.html" target="_blank">
+
+<div class="branding-container">
+  Learn how you can embed our app!
+  <a href="https://post40gains.blogspot.com/p/how-to-embed-our-apps.html" target="_blank">
     How To Embed
-    </a>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
-  <script src="script.js"></script>
+  </a>
+</div>
+
+<footer>
+  <p>&copy; [2025] Kurt Astarita</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
+<script src="script.js"></script>
 </body>
-  <footer>
-      <p>&copy; [2025] Kurt Astarita</p>
-  </footer>
 </html>
