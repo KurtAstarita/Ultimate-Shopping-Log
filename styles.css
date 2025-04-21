@@ -184,3 +184,46 @@ footer a {
   text-decoration: none;
   color: #007bff;
 }
+
+.social-share {
+  margin-top: 2em;
+  padding: 1em;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.social-share h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.social-share ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block; /* To center the list */
+}
+
+.social-share li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+
+.social-share li a {
+  display: block;
+}
+
+.social-share img {
+  width: 32px; /* Adjust size as needed */
+  height: 32px;
+  border-radius: 5px; /* Optional: circular icons */
+  transition: transform 0.2s ease-in-out;
+}
+
+.social-share img:hover {
+  transform: scale(1.1);
+}
