@@ -6,26 +6,43 @@ const confirmYes = document.getElementById("confirm-yes");
 const confirmNo = document.getElementById("confirm-no");
 
 let itemToRemove = null;
+let lastSaveTime = 0;
+const saveInterval = 2000; // 2 seconds
 
 function validateInput(inputId, type, maxLength, required = false) {
     const input = document.getElementById(inputId);
     const value = input ? input.value : "";
     let isValid = true;
+    let errorMessage = "";
 
     if (required && !value) {
         isValid = false;
+        errorMessage = `Please fill out the ${inputId.replace('-', ' ')} field.`;
     } else if (type === 'number') {
         if (isNaN(value) || parseFloat(value) < 0) {
             isValid = false;
+            errorMessage = `Invalid number for ${inputId.replace('-', ' ')}. Must be non-negative.`;
+        }
+    } else if (type === 'integer') {
+        if (!/^\d+$/.test(value) || parseInt(value) < 1) {
+            isValid = false;
+            errorMessage = `Invalid quantity for ${inputId.replace('-', ' ')}. Must be a positive integer.`;
+        }
+    } else if (type === 'price') {
+        if (isNaN(value) || parseFloat(value) < 0 || (value.indexOf('.') !== -1 && value.split('.')[1].length > 2)) {
+            isValid = false;
+            errorMessage = `Invalid price for ${inputId.replace('-', ' ')}. Must be a non-negative number with at most two decimal places.`;
         }
     } else if (type === 'text' && value.length > maxLength) {
         isValid = false;
+        errorMessage = `${inputId.replace('-', ' ')} cannot exceed ${maxLength} characters.`;
     } else if (type === 'date' && isNaN(Date.parse(value))) {
         isValid = false;
+        errorMessage = `Invalid date for ${inputId.replace('-', ' ')}.`;
     }
 
     if (!isValid && inputId) {
-        alert(`Invalid input for ${inputId}.`);
+        alert(errorMessage);
         input.classList.add('invalid-input');
         input.focus();
         return false;
@@ -41,7 +58,7 @@ document.getElementById("add-item").addEventListener("click", () => {
     item.innerHTML = `
         <input type="text" placeholder="Item Name" id="itemName-${Date.now()}">
         <input type="number" placeholder="Quantity" min="1" id="quantity-${Date.now()}">
-        <input type="number" placeholder="Price" min="0" id="price-${Date.now()}">
+        <input type="number" placeholder="Price" min="0" step="0.01" id="price-${Date.now()}">
         <input type="text" placeholder="Category" id="category-${Date.now()}">
         <input type="text" placeholder="Notes" id="notes-${Date.now()}">
     `;
@@ -67,6 +84,12 @@ confirmNo.addEventListener("click", () => {
 });
 
 document.getElementById('save-log').addEventListener('click', () => {
+    const currentTime = Date.now();
+    if (currentTime - lastSaveTime < saveInterval) {
+        alert("Please wait a moment before saving again.");
+        return;
+    }
+
     if (!validateInput('shopping-date', 'date', null, true) ||
         !validateInput('financial-goal', 'number', null, true)
     ) {
@@ -77,11 +100,13 @@ document.getElementById('save-log').addEventListener('click', () => {
         .slice(1)
         .map(item => {
             const inputs = Array.from(item.querySelectorAll("input"));
-            if (!validateInput(inputs[0].id || "", 'text', 255, true) ||
-                !validateInput(inputs[1].id || "", 'number', null, true) ||
-                !validateInput(inputs[2].id || "", 'number', null, true) ||
-                !validateInput(inputs[3].id || "", 'text', 255, true) ||
-                !validateInput(inputs[4].id || "", 'text', 255, false)) {
+            const itemNameValid = validateInput(inputs[0].id || "", 'text', 255, true);
+            const quantityValid = validateInput(inputs[1].id || "", 'integer', null, true);
+            const priceValid = validateInput(inputs[2].id || "", 'price', null, true);
+            const categoryValid = validateInput(inputs[3].id || "", 'text', 255, true);
+            const notesValid = validateInput(inputs[4].id || "", 'text', 255, false);
+
+            if (!itemNameValid || !quantityValid || !priceValid || !categoryValid || !notesValid) {
                 return null;
             }
 
@@ -105,6 +130,7 @@ document.getElementById('save-log').addEventListener('click', () => {
 
     localStorage.setItem("shoppingLog", JSON.stringify(log));
     alert("Shopping log saved!");
+    lastSaveTime = currentTime;
 });
 
 function sanitizeInput(input) {
@@ -197,41 +223,21 @@ document.getElementById("upload-log").addEventListener("change", event => {
         try {
             const parsedData = JSON.parse(e.target.result);
 
-            console.log("Parsed Data:", parsedData); // Log the entire parsed object
-
-            if (typeof parsedData !== 'object' || parsedData === null) {
-                console.error("Error: Parsed data is not an object.");
-                throw new Error("Invalid shopping log structure.");
-            }
-
-            if (!parsedData.hasOwnProperty('date') || typeof parsedData.date !== 'string') {
-                console.error("Error: Missing or invalid 'date' property.");
-                throw new Error("Invalid shopping log structure.");
-            }
-
-            if (!parsedData.hasOwnProperty('goal') || (typeof parsedData.goal !== 'number' && isNaN(Number(parsedData.goal)))) {
-                console.error("Error: Missing or invalid 'goal' property. Must be a number.");
-                throw new Error("Invalid shopping log structure.");
-            }
-
-            if (!parsedData.hasOwnProperty('items') || !Array.isArray(parsedData.items)) {
-                console.error("Error: Missing or invalid 'items' property.");
+            if (typeof parsedData !== 'object' || parsedData === null ||
+                !parsedData.hasOwnProperty('date') || typeof parsedData.date !== 'string' ||
+                !parsedData.hasOwnProperty('goal') || (typeof parsedData.goal !== 'number' && isNaN(Number(parsedData.goal))) ||
+                !parsedData.hasOwnProperty('items') || !Array.isArray(parsedData.items)
+            ) {
                 throw new Error("Invalid shopping log structure.");
             }
 
             for (let i = 0; i < parsedData.items.length; i++) {
                 const item = parsedData.items[i];
-                console.log(`Checking Item ${i}:`, item); // Log each item
-
-                if (!Array.isArray(item) || item.length !== 5) {
-                    console.error(`Error: Item ${i} is not an array of length 5.`);
-                    throw new Error("Invalid shopping item structure.");
-                }
-
-                if (typeof item[0] !== 'string' || typeof item[1] !== 'string' ||
+                if (!Array.isArray(item) || item.length !== 5 ||
+                    typeof item[0] !== 'string' || typeof item[1] !== 'string' ||
                     typeof item[2] !== 'string' || typeof item[3] !== 'string' ||
-                    typeof item[4] !== 'string') {
-                    console.error(`Error: Item ${i} has invalid data types.`);
+                    typeof item[4] !== 'string'
+                ) {
                     throw new Error("Invalid shopping item structure.");
                 }
             }
@@ -258,6 +264,6 @@ const footerLinks = document.querySelectorAll('footer a');
 footerLinks.forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default link behavior
-        window.parent.location.href = link.href; // Open in parent window
+        window.open(link.href, '_blank').focus(); // Open in a new tab/window
     });
 });
